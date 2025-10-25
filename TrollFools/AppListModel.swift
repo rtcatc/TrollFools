@@ -177,7 +177,6 @@ final class AppListModel: ObservableObject {
                     print("[DEBUG]  - 名称: \(appName)")
                 }
                 
-                return nil
             }
 
                 guard !id.hasPrefix("wiki.qaq.") && !id.hasPrefix("com.82flex.") && !id.hasPrefix("ch.xxtou.") else {

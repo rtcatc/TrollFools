@@ -159,6 +159,23 @@ final class AppListModel: ObservableObject {
                       let appType = proxy.applicationType(),
                       let localizedName = proxy.localizedName()
                 else {
+                    print("DEBUG: 应用被过滤 - 缺少必要信息:")
+                    if id == nil { print("  - 缺少ID") }
+                    if url == nil { print("  - 缺少URL") }
+                    if teamID == nil { print("  - 缺少TeamID") }
+                    if appType == nil { print("  - 缺少AppType") }
+                    if localizedName == nil { print("  - 缺少LocalizedName") }
+    
+                    // 尝试打印任何可用的标识信息
+                    if let idVal = id {
+                        print("  - 可用ID: \(idVal)")
+                    }
+    
+                    // 尝试获取其他可能有帮助的信息
+                    if let urlPath = url?.path {
+                        print("  - 可用URL路径: \(urlPath)")
+                    }
+    
                     return nil
                 }
 
@@ -179,14 +196,6 @@ final class AppListModel: ObservableObject {
                     url: url,
                     version: shortVersionString
                 )
-
-
-
-
-
-
-
-
 
                 return app
             }

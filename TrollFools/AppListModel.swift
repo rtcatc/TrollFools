@@ -180,14 +180,6 @@ final class AppListModel: ObservableObject {
                     version: shortVersionString
                 )
 
-                if app.isUser && app.isFromApple {
-                    return nil
-                }
-
-                guard app.isRemovable else {
-                    return nil
-                }
-
                 return app
             }
 

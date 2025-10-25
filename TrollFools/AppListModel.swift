@@ -175,8 +175,6 @@ final class AppListModel: ObservableObject {
                 }
                 if let appName = proxy.localizedName() {
                     print("[DEBUG]  - 名称: \(appName)")
-                } else if let bundleId = proxy.bundleIdentifier() {
-                    print("[DEBUG]  - 包ID: \(bundleId)")
                 }
                 
                 return nil

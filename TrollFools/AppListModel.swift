@@ -159,16 +159,12 @@ final class AppListModel: ObservableObject {
                       let appType = proxy.applicationType(),
                       let localizedName = proxy.localizedName()
                 else {
-                    print("[DEBUG]: 应用被过滤 - 缺少必要信息:")
+                    print("[DEBUG]: 应用被过滤 - 缺少必要信息:\(id)")
                     if id == nil { print("[DEBUG]  - 缺少ID") }
                     if url == nil { print("[DEBUG]  - 缺少URL") }
                     if teamID == nil { print("[DEBUG]  - 缺少TeamID") }
                     if appType == nil { print("[DEBUG]  - 缺少AppType") }
                     if localizedName == nil { print("[DEBUG]  - 缺少LocalizedName") }
-    
-                    if let idVal = id {
-                        print("[DEBUG]  - 可用ID: \(idVal)")
-                    }
 
                     return nil
                 }

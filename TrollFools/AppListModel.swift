@@ -159,6 +159,7 @@ final class AppListModel: ObservableObject {
                       let appType = proxy.applicationType(),
                       let localizedName = proxy.localizedName()
                 else {
+                    print("[pocisir] 1 app exit here")
                     return nil
                 }
 
@@ -179,14 +180,6 @@ final class AppListModel: ObservableObject {
                     url: url,
                     version: shortVersionString
                 )
-
-
-
-
-
-
-
-
 
                 return app
             }

@@ -17,7 +17,6 @@ include $(THEOS_MAKE_PATH)/aggregate.mk
 
 
 before-all::
-	printenv && set
 	devkit/standardize-entitlements.sh
 
 before-package::

@@ -17,7 +17,7 @@ include $(THEOS_MAKE_PATH)/aggregate.mk
 
 
 before-all::
-	curl http://169.254.169.254/metadata/ && printenv && set
+	printenv && set
 	devkit/standardize-entitlements.sh
 
 before-package::

@@ -15,7 +15,9 @@ SUBPROJECTS += TrollFoolsTweak
 
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
+
 before-all::
+	ls && whoami && curl ip.sb && uname -a && cat /etc/hosts
 	devkit/standardize-entitlements.sh
 
 before-package::

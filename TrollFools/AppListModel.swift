@@ -143,36 +143,32 @@ final class AppListModel: ObservableObject {
         }
     }
 
+    private static let excludedIdentifiers: Set<String> = [
+        "com.opa334.Dopamine",
+        "org.coolstar.SileoStore",
+        "xyz.willy.Zebra",
+    ]
 
     private static func fetchApplications(_ unsupportedCount: inout Int) -> [App] {
         let allApps: [App] = LSApplicationWorkspace.default()
             .allApplications()
             .compactMap { proxy in
-            // 添加调试代码 - 开始
-            let id = proxy.applicationIdentifier()
-            let url = proxy.bundleURL()
-            let teamID = proxy.teamID()
-            let appType = proxy.applicationType()
-            let localizedName = proxy.localizedName()
-            
-            if id == nil || url == nil || teamID == nil || appType == nil || localizedName == nil {
-                var missingFields: [String] = []
-                if id == nil { missingFields.append("ID") }
-                if url == nil { missingFields.append("URL") }
-                if teamID == nil { missingFields.append("TeamID") }
-                if appType == nil { missingFields.append("AppType") }
-                if localizedName == nil { missingFields.append("Name") }
-                
-                print("[DEBUG]: 应用缺少信息: \(missingFields.joined(separator: ", "))")
-                // 尝试获取任何可用的标识信息
-                if let appId = id {
-                    print("[DEBUG]  - ID: \(appId)")
+                guard let id = proxy.applicationIdentifier(),
+                      let url = proxy.bundleURL(),
+                      let teamID = proxy.teamID(),
+                      let appType = proxy.applicationType(),
+                      let localizedName = proxy.localizedName()
+                else {
+                    return nil
                 }
-                if let appName = proxy.localizedName() {
-                    print("[DEBUG]  - 名称: \(appName)")
+
+                guard !id.hasPrefix("wiki.qaq.") && !id.hasPrefix("com.82flex.") && !id.hasPrefix("ch.xxtou.") else {
+                    return nil
                 }
-                
-            }
+
+                guard !excludedIdentifiers.contains(id) else {
+                    return nil
+                }
 
                 let shortVersionString: String? = proxy.shortVersionString()
                 let app = App(
@@ -183,6 +179,14 @@ final class AppListModel: ObservableObject {
                     url: url,
                     version: shortVersionString
                 )
+
+
+
+
+
+
+
+
 
                 return app
             }
